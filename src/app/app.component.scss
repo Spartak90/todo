@@ -1,0 +1,24 @@
+@import './mixins';
+
+/deep/.mat-tab-body-wrapper {
+  height: 100% !important;
+}
+
+.cnt {
+  background-color: lightskyblue;
+  color: white;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  .todo-cnt {
+    @include absolute-centerer;
+
+    background-color: white;
+    color: black;
+    display: flex;
+    min-height: 600px;
+    overflow: auto;
+  }
+}

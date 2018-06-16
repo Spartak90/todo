@@ -1,9 +1,18 @@
 {
-  "posts": [
-    { "id": 1, "title": "json-server", "author": "typicode" }
+  "todo": [
+    {
+      "id": 1,
+      "title": "install json-server",
+      "description": "Install json server to make use of server data",
+      "status": "STATUS_TODO"
+    }
   ],
-  "comments": [
-    { "id": 1, "body": "some comment", "postId": 1 }
-  ],
-  "profile": { "name": "typicode" }
+  "done": [
+    {
+      "id": 1,
+      "title": "finish todo app",
+      "description": "Finish todo app for ikub practical part of the interview",
+      "status": "STATUS_DONE"
+    }
+  ]
 }

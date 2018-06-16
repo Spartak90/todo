@@ -1,0 +1,13 @@
+
+<div class = "todo-item"
+     *ngIf = "task">
+
+  <mat-checkbox (change) = "onCheckboxChange($event)">
+    <span [ngClass] = "{'--line-through': checked}">{{task.name}}</span>
+  </mat-checkbox>
+
+  <div class = "icons">
+    <mat-icon class = "icon" (click) = "onEdit()">edit</mat-icon>
+    <mat-icon class = "icon" (click) = "onDelete()">close</mat-icon>
+  </div>
+</div>

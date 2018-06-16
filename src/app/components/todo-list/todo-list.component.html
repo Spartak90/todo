@@ -1,0 +1,14 @@
+<div class = "todo-list">
+  <app-task-item *ngFor = "let task of tasks"
+                 [task] = "task"
+                 (deleteEvent) = "onDeleteEvent($event)"
+                 (editEvent) = "onEditEvent($event)"
+                 (statusChangeEvent) = "onTaskCompletedChange($event)">
+  </app-task-item>
+
+  <div class = "add-todo">
+    <button mat-button>
+      Add
+    </button>
+  </div>
+</div>

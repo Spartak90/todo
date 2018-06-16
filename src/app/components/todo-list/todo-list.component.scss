@@ -1,0 +1,20 @@
+:host {
+  display: block;
+  height: 100%;
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+
+  .add-todo {
+    margin-top: auto;
+    text-align: center;
+
+    button {
+      padding: 10px;
+      width: 100%;
+    }
+  }
+}
