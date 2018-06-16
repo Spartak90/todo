@@ -6,6 +6,10 @@ import { TodoListComponent } from './components/todo-list/todo-list.component';
 import { DoneListComponent } from './components/done-list/done-list.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { DeleteTaskComponent } from './dialogs/delete-task/delete-task.component';
+import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
+import {FormsModule} from '@angular/forms';
+import {TaskService} from './providers/task.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -13,16 +17,22 @@ import { DeleteTaskComponent } from './dialogs/delete-task/delete-task.component
     TodoListComponent,
     DoneListComponent,
     TaskItemComponent,
-    DeleteTaskComponent
+    DeleteTaskComponent,
+    TaskDialogComponent
   ],
   imports: [
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     MaterialModule
   ],
   entryComponents: [
-    DeleteTaskComponent
+    DeleteTaskComponent,
+    TaskDialogComponent
   ],
-  providers: [],
+  providers: [
+    TaskService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

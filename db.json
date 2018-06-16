@@ -1,18 +1,14 @@
 {
-  "todo": [
+  "tasks": [
     {
       "id": 1,
-      "title": "install json-server",
-      "description": "Install json server to make use of server data",
-      "status": "STATUS_TODO"
-    }
-  ],
-  "done": [
+      "name": "install json-server",
+      "completed": false
+    },
     {
-      "id": 1,
-      "title": "finish todo app",
-      "description": "Finish todo app for ikub practical part of the interview",
-      "status": "STATUS_DONE"
+      "id": 2,
+      "name": "finish todo app",
+      "completed": true
     }
   ]
 }

@@ -5,6 +5,8 @@ import {EditTaskEvent} from '../../interfaces/edit-task-event';
 import {MatDialog} from '@angular/material';
 import {DeleteTaskComponent} from '../../dialogs/delete-task/delete-task.component';
 import {CompletedChangeEvent} from '../../interfaces/completed-change-event';
+import {TaskDialogComponent} from '../../dialogs/task-dialog/task-dialog.component';
+import {TaskService} from '../../providers/task.service';
 
 @Component({
   selector: 'app-todo-list',
@@ -26,9 +28,24 @@ export class TodoListComponent implements OnInit {
     })
   ];
 
-  constructor(private _dialog: MatDialog) {}
+  constructor(
+    private _dialog: MatDialog,
+    private _taskService: TaskService
+  ) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this._taskService.getTodoTasks$().subscribe((results: Task[]) => {
+      this.tasks = results;
+    });
+  }
+
+  addNewTodoTask() {
+    const dialogRef = this._dialog.open(TaskDialogComponent);
+
+    dialogRef.afterClosed().subscribe(newTask => {
+      console.log('add new task');
+    });
+  }
 
   onDeleteEvent(ev: DeleteTaskEvent): void {
     const dialogRef = this._dialog.open(DeleteTaskComponent);
@@ -41,7 +58,15 @@ export class TodoListComponent implements OnInit {
   }
 
   onEditEvent(ev: EditTaskEvent): void {
-    console.log('todo: edit task number', ev);
+    const dialogRef = this._dialog.open(TaskDialogComponent, {
+      data: {
+        task: ev.task
+      }
+    });
+
+    dialogRef.afterClosed().subscribe((task: Task) => {
+      console.log('task edited', task);
+    });
   }
 
   onTaskCompletedChange(ev: CompletedChangeEvent) {
