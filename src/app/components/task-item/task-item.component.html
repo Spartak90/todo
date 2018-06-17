@@ -3,7 +3,12 @@
      *ngIf = "task">
 
   <mat-checkbox [checked] = "task.completed" (change) = "onCheckboxChange($event)">
-    <span [ngClass] = "{'--line-through': task.completed}">{{task.name}}</span>
+    <span class = "checkbox-label"
+          [matTooltipDisabled] = "task.name?.length < 15"
+          [matTooltip] = "task.name"
+          [ngClass] = "{'--line-through': task.completed}">
+      {{task.name | ellipsis: '15'}}
+    </span>
   </mat-checkbox>
 
   <div class = "icons">

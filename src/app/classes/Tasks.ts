@@ -38,6 +38,7 @@ export class Tasks {
 
   onEditEvent(ev: EditTaskEvent): void {
     const dialogRef = this.dialog.open(TaskDialogComponent, {
+      width: '300px',
       data: {
         task: ev.task
       }
