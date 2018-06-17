@@ -38,11 +38,11 @@ export class TaskDialogComponent implements OnInit, OnDestroy {
     this.taskNameSubscription.unsubscribe();
   }
 
-  onClose() {
+  onClose(): void {
     this._dialogRef.close();
   }
 
-  onSave() {
+  onSave(): void {
     this._dialogRef.close(this.task);
   }
 }

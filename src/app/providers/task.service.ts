@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Task} from '../models/task';
 import {map} from 'rxjs/operators';
+import {Observable} from 'rxjs/index';
 
 @Injectable({
   providedIn: 'root'
@@ -11,19 +12,19 @@ export class TaskService {
 
   constructor(private _httpClient: HttpClient) { }
 
-  addNewTask$(body) {
-    return this._httpClient.post(`${this.url}`, body);
+  addNewTask$(body): Observable<Task> {
+    return this._httpClient.post<Task>(`${this.url}`, body);
   }
 
-  deleteTask$(id) {
+  deleteTask$(id): Observable<Object> {
     return this._httpClient.delete(`${this.url}/${id}`);
   }
 
-  editTask$(id, body) {
-    return this._httpClient.put(`${this.url}/${id}`, body);
+  editTask$(id, body): Observable<Task> {
+    return this._httpClient.put<Task>(`${this.url}/${id}`, body);
   }
 
-  getTasks$(options?) {
+  getTasks$(options?): Observable<Task[]> {
     return this._httpClient.get<Task[]>(`${this.url}?completed=${options ? options.completed : undefined}`)
       .pipe(
         map((result) => {
@@ -34,7 +35,7 @@ export class TaskService {
       );
   }
 
-  changeTaskStatus$(id, value) {
-    return this._httpClient.patch(`${this.url}/${id}`, {completed: value});
+  changeTaskStatus$(id, value): Observable<Task> {
+    return this._httpClient.patch<Task>(`${this.url}/${id}`, {completed: value});
   }
 }

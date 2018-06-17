@@ -21,7 +21,7 @@ export class DoneListComponent extends Tasks implements OnInit {
     this.getTasks();
   }
 
-  getTasks() {
+  getTasks(): void {
     this.taskService.getTasks$({completed: true}).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
     });

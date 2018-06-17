@@ -13,11 +13,11 @@ export class DeleteTaskComponent implements OnInit {
 
   ngOnInit() {}
 
-  onNoClick() {
+  onNoClick(): void {
     this.dialogRef.close(false);
   }
 
-  onYesClick() {
+  onYesClick(): void {
     this.dialogRef.close(true);
   }
 }

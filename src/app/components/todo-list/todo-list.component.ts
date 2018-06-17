@@ -32,13 +32,13 @@ export class TodoListComponent extends Tasks implements OnInit  {
         return;
       }
 
-      this.taskService.addNewTask$(newTask).subscribe(() => {
+      this.taskService.addNewTask$(newTask).subscribe((res) => {
         this.getTasks();
       });
     });
   }
 
-  getTasks() {
+  getTasks(): void {
     this.taskService.getTasks$({completed: false}).subscribe((tasks: Task[]) => {
       this.tasks = tasks;
     });
