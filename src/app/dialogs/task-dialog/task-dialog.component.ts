@@ -18,9 +18,9 @@ export class TaskDialogComponent implements OnInit {
 
   ngOnInit() {
     if (this.data && this.data.task) {
-      this.task = Object.assign(this.data.task);
+      this.task = new Task(this.data.task);
     } else {
-      this.task = new Task();
+      this.task = new Task({completed: false});
     }
   }
 
@@ -29,6 +29,6 @@ export class TaskDialogComponent implements OnInit {
   }
 
   onSave() {
-    this._dialogRef.close();
+    this._dialogRef.close(this.task);
   }
 }

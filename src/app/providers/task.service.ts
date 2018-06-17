@@ -1,11 +1,13 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
+import {Task} from '../models/task';
+import {map} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TaskService {
-  url = '/api/tasks';
+  url = 'api/tasks';
 
   constructor(private _httpClient: HttpClient) { }
 
@@ -21,11 +23,30 @@ export class TaskService {
     return this._httpClient.put(`${this.url}/${id}`, body);
   }
 
-  getTodoTasks$(options?) {
-    return this._httpClient.get(`${this.url}?completed=false`);
+  getTodoTasks$() {
+    return this._httpClient.get<Task[]>(`${this.url}?completed=false`)
+      .pipe(
+        map((result) => {
+          return result.map((task) => {
+            console.log('mapping task', task);
+            return new Task(task);
+          });
+        })
+      );
   }
 
   getCompletedTasks$() {
-    return this._httpClient.get(`${this.url}/completed=true`);
+    return this._httpClient.get<Task[]>(`${this.url}?completed=true`)
+      .pipe(
+        map((result) => {
+          return result.map((task) => {
+            return new Task(task);
+          });
+        })
+      );
+  }
+
+  changeTaskStatus$(id, value) {
+    return this._httpClient.patch(`${this.url}/${id}`, {completed: value});
   }
 }

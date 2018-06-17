@@ -2,8 +2,8 @@
 <div class = "todo-item"
      *ngIf = "task">
 
-  <mat-checkbox (change) = "onCheckboxChange($event)">
-    <span [ngClass] = "{'--line-through': checked}">{{task.name}}</span>
+  <mat-checkbox [checked] = "task.completed" (change) = "onCheckboxChange($event)">
+    <span [ngClass] = "{'--line-through': task.completed}">{{task.name}}</span>
   </mat-checkbox>
 
   <div class = "icons">

@@ -2,13 +2,23 @@
   "tasks": [
     {
       "id": 1,
-      "name": "install json-server",
+      "name": "install json-server 1",
       "completed": false
     },
     {
       "id": 2,
       "name": "finish todo app",
       "completed": true
+    },
+    {
+      "name": "Test Task",
+      "completed": false,
+      "id": 3
+    },
+    {
+      "id": 4,
+      "name": "Test 3",
+      "completed": false
     }
   ]
 }

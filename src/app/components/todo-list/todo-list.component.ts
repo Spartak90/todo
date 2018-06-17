@@ -14,19 +14,7 @@ import {TaskService} from '../../providers/task.service';
   styleUrls: ['./todo-list.component.scss']
 })
 export class TodoListComponent implements OnInit {
-  tasks: Task[] = [
-    new Task({
-      id: '1',
-      name: 'Finish todo for ikub',
-      completed: false
-    }),
-
-    new Task({
-      id: '1',
-      name: 'Upload todo app in github',
-      completed: false
-    })
-  ];
+  tasks: Task[];
 
   constructor(
     private _dialog: MatDialog,
@@ -34,16 +22,26 @@ export class TodoListComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this._taskService.getTodoTasks$().subscribe((results: Task[]) => {
-      this.tasks = results;
-    });
+    this.getTasks();
   }
 
-  addNewTodoTask() {
+  addNewTodoTask(): void {
     const dialogRef = this._dialog.open(TaskDialogComponent);
 
     dialogRef.afterClosed().subscribe(newTask => {
-      console.log('add new task');
+      if (!newTask) {
+        return;
+      }
+
+      this._taskService.addNewTask$(newTask).subscribe(() => {
+        this.getTasks();
+      });
+    });
+  }
+
+  getTasks() {
+    this._taskService.getTodoTasks$().subscribe((results: Task[]) => {
+      this.tasks = results;
     });
   }
 
@@ -51,9 +49,13 @@ export class TodoListComponent implements OnInit {
     const dialogRef = this._dialog.open(DeleteTaskComponent);
 
     dialogRef.afterClosed().subscribe(confirm => {
-      if (confirm) {
-        console.log('todo');
+      if (!confirm) {
+        return;
       }
+
+      this._taskService.deleteTask$(ev.id).subscribe(() => {
+        this.getTasks();
+      });
     });
   }
 
@@ -65,11 +67,24 @@ export class TodoListComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe((task: Task) => {
-      console.log('task edited', task);
+      if (!task) {
+        return;
+      }
+
+      this._taskService.editTask$(task.id, task).subscribe(() => {
+        this.getTasks();
+      });
     });
   }
 
   onTaskCompletedChange(ev: CompletedChangeEvent) {
-    console.log('todo: reflect changes in backend', ev);
+    this._taskService.changeTaskStatus$(ev.id, ev.completed)
+      .subscribe(() => {
+        const index = this.tasks.findIndex((task: Task) => {
+          return task.id === ev.id;
+        });
+
+        this.tasks.push(this.tasks.splice(index, 1)[0]);
+      });
   }
 }
