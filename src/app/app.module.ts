@@ -7,7 +7,7 @@ import { DoneListComponent } from './components/done-list/done-list.component';
 import { TaskItemComponent } from './components/task-item/task-item.component';
 import { DeleteTaskComponent } from './dialogs/delete-task/delete-task.component';
 import { TaskDialogComponent } from './dialogs/task-dialog/task-dialog.component';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {TaskService} from './providers/task.service';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -24,7 +24,8 @@ import {HttpClientModule} from '@angular/common/http';
     BrowserModule,
     FormsModule,
     HttpClientModule,
-    MaterialModule
+    MaterialModule,
+    ReactiveFormsModule
   ],
   entryComponents: [
     DeleteTaskComponent,

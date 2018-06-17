@@ -1,12 +1,19 @@
-<h1 mat-dialog-title>Task Details</h1>
+<h1 mat-dialog-title>
+  Task Details
+</h1>
 
 <div mat-dialog-content>
   <mat-form-field>
-    <input matInput placeholder = "Task Name" [(ngModel)] = "task.name">
+    <input matInput placeholder = "Task Name" [formControl] = "taskNameFc" />
+    <mat-error *ngIf = "taskNameFc.hasError('required')">Field is required</mat-error>
   </mat-form-field>
 </div>
 
 <div mat-dialog-actions>
   <button mat-button (click) = "onClose()">Close</button>
-  <button mat-button (click) = "onSave()">Save</button>
+  <button mat-button
+          [disabled] = "taskNameFc.invalid || taskNameFc.pristine"
+          (click) = "onSave()">
+    Save
+  </button>
 </div>

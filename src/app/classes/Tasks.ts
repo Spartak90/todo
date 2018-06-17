@@ -57,7 +57,7 @@ export class Tasks {
   onTaskCompletedChange(ev: CompletedChangeEvent) {
     this.taskService.changeTaskStatus$(ev.id, ev.completed)
       .subscribe(() => {
-        timer(500).subscribe(() => {
+        timer(1000).subscribe(() => {
           this.getTasks();
         });
       });
