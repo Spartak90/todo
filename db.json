@@ -3,7 +3,7 @@
     {
       "id": 1,
       "name": "install json-server 1",
-      "completed": false
+      "completed": true
     },
     {
       "id": 2,
@@ -11,13 +11,8 @@
       "completed": true
     },
     {
-      "name": "Test Task",
-      "completed": false,
-      "id": 3
-    },
-    {
-      "id": 4,
-      "name": "Test 3",
+      "id": 3,
+      "name": "Look at code",
       "completed": false
     }
   ]

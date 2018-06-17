@@ -23,17 +23,18 @@ export class TaskItemComponent implements OnInit {
 
   constructor() { }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
-  onCheckboxChange(ev: MatCheckboxChange) {
+  onCheckboxChange(ev: MatCheckboxChange): void {
+    this.task.completed = ev.checked;
     this.statusChangeEvent.emit({id: this.task.id, completed: ev.checked});
   }
 
-  onDelete() {
+  onDelete(): void {
     this.deleteEvent.emit({id: this.task.id});
   }
 
-  onEdit() {
+  onEdit(): void {
     this.editEvent.emit({task: this.task});
   }
 }

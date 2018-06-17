@@ -23,20 +23,8 @@ export class TaskService {
     return this._httpClient.put(`${this.url}/${id}`, body);
   }
 
-  getTodoTasks$() {
-    return this._httpClient.get<Task[]>(`${this.url}?completed=false`)
-      .pipe(
-        map((result) => {
-          return result.map((task) => {
-            console.log('mapping task', task);
-            return new Task(task);
-          });
-        })
-      );
-  }
-
-  getCompletedTasks$() {
-    return this._httpClient.get<Task[]>(`${this.url}?completed=true`)
+  getTasks$(options?) {
+    return this._httpClient.get<Task[]>(`${this.url}?completed=${options ? options.completed : undefined}`)
       .pipe(
         map((result) => {
           return result.map((task) => {

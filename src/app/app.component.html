@@ -3,11 +3,15 @@
   <div class = "todo-cnt">
     <mat-tab-group [dynamicHeight] = "true">
       <mat-tab label = "Todo">
-        <app-todo-list></app-todo-list>
+        <ng-template matTabContent>
+          <app-todo-list></app-todo-list>
+        </ng-template>
       </mat-tab>
 
       <mat-tab label = "Done">
-        <app-done-list></app-done-list>
+        <ng-template matTabContent>
+          <app-done-list></app-done-list>
+        </ng-template>
       </mat-tab>
     </mat-tab-group>
   </div>
